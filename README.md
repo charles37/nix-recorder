@@ -54,5 +54,5 @@ nix-recorder --eject
 Contributions to `nix-recorder` are welcome. Please submit a pull request or open an issue for bugs, features, or enhancements.
 
 ## License
-Specify your licensing information here.
+GPLv3 (RMS)
 
