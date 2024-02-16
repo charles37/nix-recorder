@@ -18,65 +18,74 @@ This section demonstrates how `nix-recorder` can be used to manage a Nix shell e
 ```bash
     [ben@marin:~/nixRecorder/nixRecorder]$ ./target/release/nixRecorder --start
     [ben@marin nixRecorder]$ ./target/release/nixRecorder --package cowsay
+    [ben@marin nixRecorder]$ cowsay moo
+     _____
+    < moo >
+     -----
+            \   ^__^
+             \  (oo)\_______
+                (__)\       )\/\
+                    ||----w |
+                    ||     ||
     [ben@marin nixRecorder]$ ./target/release/nixRecorder --package htop
     [ben@marin nixRecorder]$ ls
-    Cargo.lock  Cargo.toml  flake.nix  LICENSE  README.md  rust-toolchain  scripts  shell.nix  src  target
+    Cargo.lock  Cargo.toml  flake.lock  LICENSE  README.md  rust-toolchain  scripts  shell.nix  src  target
     [ben@marin nixRecorder]$ ./target/release/nixRecorder --eject
     [ben@marin nixRecorder]$ ^C
-    exit
     [ben@marin nixRecorder]$
     exit
     [ben@marin nixRecorder]$
     exit
+    [ben@marin nixRecorder]$
+    exit
+
 ```
 
 Upon ejecting the session to a `flake.nix` file, `nix-recorder` records the session's packages and commands:
-Notice how the `ls` command is in the shellHook, any commands you enter after starting nix-recorder will be in the shellHook.
+Notice how even the `ls` command is in the shellHook, any commands you enter after starting nix-recorder will be in the shellHook.
 
    ```nix
-    {
-      inputs = {
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-        flake-utils.url = "github:numtide/flake-utils";
-      };
+{
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
 
-      outputs = { self, nixpkgs, flake-utils }:
-        flake-utils.lib.eachDefaultSystem (system:
-          let
-            pkgs = import nixpkgs {
-              inherit system;
-            };
-          in
-          {
-              devShells.default = pkgs.mkShell {
-                buildInputs = [ pkgs.cowsay pkgs.htop ];
-                shellHook = ''
-                  ./target/release/nixRecorder --eject
-    ./target/release/nixRecorder --package htop
-    ./target/release/nixRecorder --package cowsay
-    return 0
-    unset NIX_ENFORCE_PURITY
-    shopt -u nullglob
-    unset TZ
-    shopt -s execfail
-    ./target/release/nixRecorder --package cowsay
-    return 0
-    unset NIX_ENFORCE_PURITY
-    shopt -u nullglob
-    unset TZ
-    shopt -s execfail
-    ./target/release/nixRecorder --package htop
-    return 0
-    unset NIX_ENFORCE_PURITY
-    shopt -u nullglob
-    unset TZ
-    shopt -s execfail
-    ls --color=tty
-    ./target/release/nixRecorder --eject
-                '';
-            };
-        });
-    }
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+      in
+      {
+          devShells.default = pkgs.mkShell {
+            buildInputs = [ pkgs.cowsay pkgs.htop ];
+            shellHook = ''
+              return 0
+unset NIX_ENFORCE_PURITY
+shopt -u nullglob
+unset TZ
+shopt -s execfail
+./target/release/nixRecorder --package cowsay
+return 0
+unset NIX_ENFORCE_PURITY
+shopt -u nullglob
+unset TZ
+shopt -s execfail
+cowsay moo
+./target/release/nixRecorder --package htop
+return 0
+unset NIX_ENFORCE_PURITY
+shopt -u nullglob
+unset TZ
+shopt -s execfail
+ls --color=tty
+./target/release/nixRecorder --eject
+            '';
+        };
+    });
+}
 ```
 
 To enter the development shell after ejecting, use:
