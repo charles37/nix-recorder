@@ -1,0 +1,3 @@
+./target/debug/nixRecorder --eject
+./target/debug/nixRecorder --package htop
+./target/debug/nixRecorder --package cowsay

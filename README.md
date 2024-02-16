@@ -1,49 +1,58 @@
 # Nix Recorder
 
 ## Overview
-`nix-recorder` is a command-line utility designed to manage Nix shell environments. It allows users to dynamically add packages to their Nix shell environment, save the current state, and eject to a `flake.nix` file for reproducible environments.
+`nix-recorder` is a command-line utility designed to enhance the management of Nix shell environments. It uniquely allows users to dynamically add packages to their Nix shell environment, record their terminal commands, and then eject these commands along with the package list to a `flake.nix` file for a fully reproducible environment.
 
 ## Inspiration / Idea Credit
-The Idea for this program came from a Tweet[https://twitter.com/ProgrammerDude/status/1754200297675554941] by Arian van Putten (@ProgrammerDude[https://twitter.com/ProgrammerDude]) and is mostly an experiment for programming CLI Tools in Rust
+The idea for this program was inspired by a tweet from Arian van Putten (@ProgrammerDude) and is an exploration into developing CLI tools with Rust. [Tweet by Arian van Putten](https://twitter.com/ProgrammerDude/status/1754200297675554941)
 
 ## Features
-- **Dynamic Package Management**: Add packages to your Nix shell on-the-fly.
-- **Start Nix Shell**: Initialize a basic or package-enhanced Nix shell.
-- **Eject to Flake**: Convert your current environment into a `flake.nix` file, making it reproducible.
-- **State Management**: Save the current state of your environment for future sessions.
+- **Dynamic Package Management**: Seamlessly add packages to your Nix shell on-the-fly.
+- **Automatic Command Recording**: Save terminal commands input during the session and automatically integrate them as shell hooks in the ejected `flake.nix`.
+- **Eject to Flake**: Export your current environment into a `flake.nix` file, ensuring reproducibility.
+- **Enhanced State Management**: Preserve the state of your environment, including packages and terminal commands, for future sessions.
 
 ## Roadmap
-= Save any terminal commands you input and add them as a ShellHook to the ejected Flake
-- Imporve state management
+- [x] Save any terminal commands you input and add them as a ShellHook to the ejected Flake.
+- [ ] Improve state management and user experience.
+- [ ] Support for additional Nix configurations and customization options.
 
 ## Installation
-To install `nix-recorder`, clone the repository and build the project using Cargo (Rust's package manager):
+To install `nix-recorder`, follow these steps:
+
 
 ```bash
-git clone <repository-url>
-cd nix-recorder
-cargo build --release
+    git clone <repository-url>
+    cd nix-recorder
+    cargo build --release
 ```
 
 ## Usage
 
 ### Starting a Nix Shell
-To start a Nix shell with the currently saved state:
+Initiate a Nix shell session with the saved state or a basic environment:
+
 ```bash
-nix-recorder --start
+    nix-recorder --start
 ```
 
 ### Adding a Package
-To add a package to your current Nix shell session:
+Incorporate a package into your current Nix shell session dynamically:
+
 ```bash
-nix-recorder --package <package_name>
+    nix-recorder --package <package_name>
 ```
-This command will restart the Nix shell with the new package included.
+
+The shell will restart with the newly added package.
+
+### Recording Commands
+Simply use the tool as demonstrated; it automatically records your terminal commands for the session.
 
 ### Ejecting to Flake.nix
-To create a `flake.nix` file based on the current session:
+Generate a `flake.nix` file reflecting your session's packages and commands:
+
 ```bash
-nix-recorder --eject
+    nix-recorder --eject
 ```
 
 ## Requirements
@@ -51,8 +60,8 @@ nix-recorder --eject
 - Nix package manager
 
 ## Contributing
-Contributions to `nix-recorder` are welcome. Please submit a pull request or open an issue for bugs, features, or enhancements.
+contributions are encouraged! Feel free to submit pull requests or open issues for bugs, feature requests, or enhancements.
 
 ## License
-GPLv3 (RMS)
+GPLv3
 

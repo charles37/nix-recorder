@@ -13,9 +13,28 @@
         };
       in
       {
-        devShells.default = pkgs.mkShell {
-          buildInputs = [pkgs.cowsay pkgs.neo-cowsay ];
-        };
-      }
-    );
+          devShells.default = pkgs.mkShell {
+            buildInputs = [ pkgs.cowsay pkgs.htop ];
+            shellHook = ''
+              return 0
+unset NIX_ENFORCE_PURITY
+shopt -u nullglob
+unset TZ
+shopt -s execfail
+ls --color=tty
+./target/debug/nixRecorder --package cowsay
+return 0
+unset NIX_ENFORCE_PURITY
+shopt -u nullglob
+unset TZ
+shopt -s execfail
+./target/debug/nixRecorder --package htop
+return 0
+unset NIX_ENFORCE_PURITY
+shopt -u nullglob
+unset TZ
+shopt -s execfail
+./target/debug/nixRecorder --eject
+            '';
+  };
 }
