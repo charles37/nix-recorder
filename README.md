@@ -99,9 +99,9 @@ To install `nix-recorder`, follow these steps:
     cd nix-recorder
     cargo build --release
 ```
-## Contributing
-We encourage contributions! Feel free to submit pull requests or open issues for bugs, feature requests, or enhancements.
+## Contributing 
+contributions encouraged! Feel free to submit pull requests or open issues for bugs, feature requests, or enhancements.
 
 ## License
-GPLv3
+GPLv3 (RMS)
 
