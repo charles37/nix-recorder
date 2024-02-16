@@ -158,7 +158,7 @@ fn generate_flake_nix(packages: &[String], commands: &[String]) -> String {
               {commands}
             '';
         };
-    };);
+    });
 }
 "#;
 
