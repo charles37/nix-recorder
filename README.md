@@ -77,7 +77,7 @@ Notice how the `ls` command is in the shellHook, any commands you enter after st
             };
         });
     }
-    ```
+```
 
 To enter the development shell after ejecting, use:
 
