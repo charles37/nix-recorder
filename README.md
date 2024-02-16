@@ -22,7 +22,7 @@ To install `nix-recorder`, follow these steps:
 
 
 ```bash
-    git clone <repository-url>
+    git clone https://github.com/charles37/nix-recorder.git
     cd nix-recorder
     cargo build --release
 ```
@@ -63,5 +63,5 @@ Generate a `flake.nix` file reflecting your session's packages and commands:
 contributions are encouraged! Feel free to submit pull requests or open issues for bugs, feature requests, or enhancements.
 
 ## License
-GPLv3
+GPLv3 (RMS)
 
