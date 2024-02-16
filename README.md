@@ -4,7 +4,7 @@
 `nix-recorder` is a command-line utility designed to enhance the management of Nix shell environments. It uniquely allows users to dynamically add packages to their Nix shell environment, record their terminal commands, and then eject these commands along with the package list to a `flake.nix` file for a fully reproducible environment.
 
 ## Inspiration / Idea Credit
-The idea for this program was inspired by a tweet from Arian van Putten (@ProgrammerDude) and is an exploration into developing CLI tools with Rust. [Tweet by Arian van Putten](https://twitter.com/ProgrammerDude/status/1754200297675554941)
+The idea for this program was inspired by a tweet from Arian van Putten (@ProgrammerDude) and is a personal exploration into developing CLI tools with Rust. [Tweet by Arian van Putten](https://twitter.com/ProgrammerDude/status/1754200297675554941)
 
 ## Features
 - **Dynamic Package Management**: Seamlessly add packages to your Nix shell on-the-fly.
