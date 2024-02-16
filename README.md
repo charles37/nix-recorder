@@ -104,7 +104,7 @@ To enter the development shell after ejecting, use:
 To install `nix-recorder`, follow these steps:
 
 ```bash
-    git clone <repository-url>
+    git clone https://github.com/charles37/nix-recorder/tree/main
     cd nix-recorder
     cargo build --release
 ```
