@@ -1,5 +1,5 @@
 use structopt::StructOpt;
-use std::{fs, path::PathBuf, env, process::Command};
+use std::{fs, path::PathBuf};
 
 
 #[derive(StructOpt, Debug)]
